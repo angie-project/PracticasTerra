@@ -31,9 +31,9 @@ $res = mysqli_query($mysqli, $sql);
       <th scope="row"> <img src="img/update.jpg" alt="Flecha colores" class="update"></th>
       <td>'. $row['idHistorial'].'</td>
       <td>'. $row['idUsuario'].'</td>
-      <td>' . $row['materia'].'</td>
-      <td> <input name="calificacion" id="calificacion" value="'.$row['calificacion'].'" /></td>
-      <td>' . $row['semestre'].'</td>
+      <td> <input name="materia" id="materia" value="'.$row['materia'].'" /></td>      
+      <td> <input name="calificacion" id="calificacion" value="'.$row['calificacion'].'" /></td>      
+      <td> <input name="semestre" id="semestre" value="'.$row['semestre'].'" /></td>
     </tr>';
         }    
     }

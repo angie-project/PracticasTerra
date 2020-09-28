@@ -1,6 +1,6 @@
 <?php
-include_once "header.php";
 session_start();
+include_once "header.php";
 ?>
 <style>
 .container{
@@ -27,9 +27,32 @@ $res = mysqli_query($mysqli, $sql);
 ?>
 
 <div class="container">
-  <div id="respuesta">
+<button type="button" class="btn btn-primary btn_alta_historial" >
+    Alta historial 
+  </button>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alta del historial</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="respuesta">
+        
+        </div>
+      </div>
+      
+    </div>
   </div>
+</div>
+</div>
+
+
+  
 <table class="table">
   <thead>
     <tr>
@@ -67,6 +90,7 @@ function mostrar_detalles(idHistorial){
 $(document).ready(function(){
   $(".detalles").on("click", function(){
     let idHistorial = $(this).attr('id_historial');
+    $('#exampleModal').modal('show'); 
    // alert("Mostrando detalles Jquery"+idHistorial);
         $.ajax({
         method: "POST",
@@ -80,6 +104,22 @@ $(document).ready(function(){
         });
  
   });
+
+  $(".btn_alta_historial").on("click", function(){
+   // alert("Mostrando detalles Jquery"+idHistorial);
+        $('#exampleModal').modal('show');             //muestra el modal
+        $.ajax({
+        method: "GET",
+        url: "historial_alta.php",
+        //data: "x="+$("#inputEmail").val()+"&inputPassword="+$("#inputPassword").val(), 
+        //data: "inputid="+idHistorial+"&id_btn=1&telefono=5554",
+        cache:false
+       })
+      .done(function( msg ) {
+        $("#respuesta").html(msg);
+        });
+  });
+ 
 });
 </script>
 

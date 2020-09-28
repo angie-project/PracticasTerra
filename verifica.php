@@ -20,7 +20,7 @@ $res = mysqli_query($mysqli, "select * from usuarios where usuario = '$usuario' 
     $_SESSION['nombre'] = $row["usuario"];
     //printf ("%s \n", $row["idUsuario"]);
     //exit();
-    header('Location: perfil.php');  //interpolacion 
+    header('Location: crud.php');  //interpolacion 
  }else {
     //echo "El usuario no existe";
     $error= 1;
