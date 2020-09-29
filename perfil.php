@@ -56,9 +56,10 @@ $res = mysqli_query($mysqli, $sql);
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Img</th>
       <th scope="col">Materia</th>
       <th scope="col">Calificación</th>
+      <th scope="col">Semestre</th>
+      <th scope="col">Acción</th>
     </tr>
   </thead>
   <tbody>
@@ -69,12 +70,13 @@ $res = mysqli_query($mysqli, $sql);
       echo 'Materia :', $materia= $row['materia'],'<br>';
       echo 'Calificacion :', $cal= $row['calificacion'],'<br>';*/
       echo  '<tr>
-      <th scope="row">
-      <img src="img/arrorcolor.jpg" alt="Flecha colores" onclick="mostrar_detalles('.$row['idHistorial'].')">
-      <img src="img/arrorcolor.jpg" alt="Flecha colores" class="detalles" id_historial="'.$row['idHistorial'].'">
-      </th>
       <td>' . $row['materia'].'</td>
       <td>' . $row['calificacion'].'</td>
+      <td>' . $row['semestre']. '</td>
+      <th scope="row">
+      <img src="img/arrorcolor.jpg" alt="Flecha colores" class="detalles" id_historial="'.$row['idHistorial'].'">
+      <img src="img/delete.jpg" alt="Flecha colores" class="del">
+      </th>
     </tr>';
     }   
     ?> 
@@ -120,6 +122,7 @@ $(document).ready(function(){
         });
   });
  
+  
 });
 </script>
 

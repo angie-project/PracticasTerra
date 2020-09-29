@@ -67,6 +67,7 @@ $res = mysqli_query($mysqli, $sql);
       echo  '<tr>
       <th scope="row">
       <img src="img/arrorcolor.jpg" alt="Flecha colores" class="detalles" id_historial="'.$row['idHistorial'].'">
+      <img src="img/delete.jpg" alt="Tache" class="detalles" id_historial="'.$row['idHistorial'].'">
       </th>
       <td>' . $row['materia'].'</td>
       <td>' . $row['calificacion'].'</td>

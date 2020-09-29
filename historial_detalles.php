@@ -34,6 +34,7 @@ $res = mysqli_query($mysqli, $sql);
       <td> <input name="materia" id="materia" value="'.$row['materia'].'" /></td>      
       <td> <input name="calificacion" id="calificacion" value="'.$row['calificacion'].'" /></td>      
       <td> <input name="semestre" id="semestre" value="'.$row['semestre'].'" /></td>
+      <button type="button" class="btn btn-primary alta_historial">Guardar</button>
     </tr>';
         }    
     }
