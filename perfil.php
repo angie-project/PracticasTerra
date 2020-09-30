@@ -77,7 +77,7 @@ $res = mysqli_query($mysqli, $sql);
           <td>' . $row['semestre']. '</td>
           <th scope="row">
           <img src="img/arrorcolor.jpg" alt="Flecha colores" class="detalles mod" accion="update" id_historial="'.$row['idHistorial'].'">
-          <img src="img/delete.jpg" alt="Flecha colores" class="mod" accion="delete">
+          <img src="img/delete.jpg" alt="Flecha colores" class="mod_baja" id_historial="'. $row['idHistorial'] .'" accion="delete">
           </th>
         </tr>';
         }   
@@ -124,12 +124,43 @@ $(document).ready(function(){
   //       });
   // });
  
-  $(".mod").on("click", function(){
+  $(".mod_alta").on("click", function(){
         let modal = $(this).attr('accion');
+        
         $.ajax({
             method: "GET",
             url: "load_modales.php", 
             data: "accion="+modal,
+            cache:false
+        })
+        .done(function( msg ) {
+            $("#respuesta").html(msg);
+            $(".modal").modal();
+            });
+    });
+
+    $(".mod_update").on("click", function(){
+        let modal = $(this).attr('accion');
+        
+        $.ajax({
+            method: "GET",
+            url: "load_modales.php", 
+            data: "accion="+modal,
+            cache:false
+        })
+        .done(function( msg ) {
+            $("#respuesta").html(msg);
+            $(".modal").modal();
+            });
+    });
+
+    $(".mod_baja").on("click", function(){
+        let modal = $(this).attr('accion');
+        let id_historial= $(this).attr('id_historial');
+        $.ajax({
+            method: "GET",
+            url: "load_modales.php", 
+            data: "accion="+modal+"&id_historial="+id_historial,
             cache:false
         })
         .done(function( msg ) {

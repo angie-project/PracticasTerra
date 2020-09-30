@@ -13,15 +13,17 @@ switch ($accion) {
         echo "Se dio de alta corretamente";
         break;
     case 'baja':
-        $idhistorial = $_POST["idHistorial"];
-        $sql = "delete from historial where idHistorial= '$idHistorial'";
+        $idhistorial = $_POST["id_historial"]; 
+        $sql = "delete from historial where idHistorial= '$idhistorial'";
         $res = mysqli_query($mysqli, $sql);
         echo "El registro se elimino correctamente";
         break;
     case 'actualizacion':
         $idHistorial = $_POST["id"];
-        $calificacion = $_POST["cal"];
-        $sql = "update historial set calificacion= '". $calificacion ."' where idHistorial= '$idHistorial'";
+        $materia = $_POST["materia"];
+        $calificacion = $_POST["calificacion"];
+        $semestre = $_POST["semestre"];
+        $sql = "update historial set materia= '". $materia ."',calificacion= '". $calificacion ."',semestre= '". $semestre ."'  where idHistorial= '$idHistorial'";
         $res = mysqli_query($mysqli, $sql);
         echo "El registro se actualizo correctamente";
         break;
