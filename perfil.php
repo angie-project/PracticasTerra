@@ -22,7 +22,7 @@ $res = mysqli_query($mysqli, $sql);
 
 <div class="container">
 
-  <button type="button" class="btn btn-primary btn_alta_historial mod"   accion="alta">
+  <button type="button" class="btn btn-primary btn_alta_historial mod_alta" accion="alta">
     Alta historial 
   </button>
     <div class="row mt-3 ml-3">
@@ -64,7 +64,7 @@ $res = mysqli_query($mysqli, $sql);
           <th scope="col">Acción</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody>  
         <?php 
         while($row=mysqli_fetch_array($res)){
           /*echo 'id Historial', $idhistorial= $row['idHistorial'],'<br>';
@@ -76,8 +76,8 @@ $res = mysqli_query($mysqli, $sql);
           <td>' . $row['calificacion'].'</td>
           <td>' . $row['semestre']. '</td>
           <th scope="row">
-          <img src="img/arrorcolor.jpg" alt="Flecha colores" class="detalles mod" accion="update" id_historial="'.$row['idHistorial'].'">
-          <img src="img/delete.jpg" alt="Flecha colores" class="mod_baja" id_historial="'. $row['idHistorial'] .'" accion="delete">
+          <img src="img/arrorcolor.jpg" alt="Flecha colores" class="mod_update" accion="update" id_historial="'.$row['idHistorial'].'">
+          <img src="img/delete.jpg" alt="Flecha colores" class="mod_baja" accion="delete" id_historial="'. $row['idHistorial'] .'">
           </th>
         </tr>';
         }   
@@ -126,7 +126,6 @@ $(document).ready(function(){
  
   $(".mod_alta").on("click", function(){
         let modal = $(this).attr('accion');
-        
         $.ajax({
             method: "GET",
             url: "load_modales.php", 
@@ -141,11 +140,13 @@ $(document).ready(function(){
 
     $(".mod_update").on("click", function(){
         let modal = $(this).attr('accion');
-        
+        let id_historial= $(this).attr('id_historial');
+        //alert(modal+" "+id_historial);
+        //return;
         $.ajax({
             method: "GET",
             url: "load_modales.php", 
-            data: "accion="+modal,
+            data: "accion="+modal+"&id_historial="+id_historial,
             cache:false
         })
         .done(function( msg ) {

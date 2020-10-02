@@ -19,11 +19,11 @@ switch ($accion) {
         echo "El registro se elimino correctamente";
         break;
     case 'actualizacion':
-        $idHistorial = $_POST["id"];
+        $idhistorial = $_POST["id_historial"];
         $materia = $_POST["materia"];
         $calificacion = $_POST["calificacion"];
         $semestre = $_POST["semestre"];
-        $sql = "update historial set materia= '". $materia ."',calificacion= '". $calificacion ."',semestre= '". $semestre ."'  where idHistorial= '$idHistorial'";
+        $sql = "update historial set materia= '". $materia ."',calificacion= '". $calificacion ."',semestre= '". $semestre ."'  where idHistorial= '$idhistorial'";
         $res = mysqli_query($mysqli, $sql);
         echo "El registro se actualizo correctamente";
         break;
