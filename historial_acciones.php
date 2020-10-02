@@ -10,7 +10,7 @@ switch ($accion) {
         $semestre = $_POST["semestre"];
         $sql = "insert into historial(idUsuario,materia,calificacion,semestre) values('".$_SESSION['idUsuario']."','".$materia."','".$calificacion."','".$semestre."')";
         $res = mysqli_query($mysqli, $sql);
-        echo "Se dio de alta corretamente";
+        echo "Se dio de alta correctamente";
         break;
     case 'baja':
         $idhistorial = $_POST["id_historial"]; 
