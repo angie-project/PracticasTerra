@@ -10,7 +10,7 @@ include_once "header.php";
 
 <div class="container">
 <div class="jumbotron" >
-  <h1 class="display-4">Bienvenido! <?= $_SESSION['nombre'];?></h1>
+  <h1 class="display-4">Bienvenido Daniel! <?= $_SESSION['nombre'];?></h1>
 </div>
 
 <?php

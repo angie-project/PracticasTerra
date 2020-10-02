@@ -16,7 +16,7 @@ switch ($accion) {
         $idhistorial = $_POST["id_historial"]; 
         $sql = "delete from historial where idHistorial= '$idhistorial'";
         $res = mysqli_query($mysqli, $sql);
-        echo "El registro se elimino correctamente";
+        echo "El registro se elimino correctamente...";
         break;
     case 'actualizacion':
         $idhistorial = $_POST["id_historial"];
@@ -25,7 +25,7 @@ switch ($accion) {
         $semestre = $_POST["semestre"];
         $sql = "update historial set materia= '". $materia ."',calificacion= '". $calificacion ."',semestre= '". $semestre ."'  where idHistorial= '$idhistorial'";
         $res = mysqli_query($mysqli, $sql);
-        echo "El registro se actualizo correctamente";
+        echo "El registro se actualizo correctamente...";
         break;
 }
 
