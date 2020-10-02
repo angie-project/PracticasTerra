@@ -1,5 +1,6 @@
 <?php
 $nombre = "Angelica";
+$apellido = "Cesar";
 echo 'hola $nombre <br>';
 echo "hola $nombre <br>";
 echo 'hola ' .$nombre;
