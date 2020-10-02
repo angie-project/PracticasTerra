@@ -9,7 +9,7 @@ $accion = $_GET['accion'];
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Alta datos</h5>
+                  <h5 class="modal-title">Alta de datos</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -64,7 +64,7 @@ $accion = $_GET['accion'];
             <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title">Actualización de datos</h5>
+                    <h5 class="modal-title">Actualización datos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -146,14 +146,14 @@ $accion = $_GET['accion'];
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Baja de datos</h5>
+                        <h5 class="modal-title">Baja datos</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
 
-                        <p>¿Estas seguro que deseas eliminar este campo?</p>
+                        <p>¿Estas seguro que deseas eliminar todos los campos?</p>
                         <?php
                             echo "<p>".$row['materia']."</p>";
                         ?>
