@@ -5,7 +5,7 @@ $accion = $_GET['accion'];
 
     switch ($accion) {
         case 'alta':
-            echo '<div class="modal" tabindex="-1" role="dialog">
+             ?> <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -15,13 +15,22 @@ $accion = $_GET['accion'];
                   </button>
                   </div>
                   <div class="modal-body">
-                        <form id="frm_alta_historial">
-                          <label for="materia"> Materia </label>
-                          <input id="materia" name="materia"/> <br>
-                          <label for="calificacion"> Calificación </label>
-                          <input id="calificacion" name="calificacion"/><br>
-                          <label for="semestre"> Semestre </label>
-                          <input id="semestre" name="semestre"/>
+                        <form id="frm_alta_historial" class="form">
+                          <div class="form-group">
+                            <label for="materia"> Materia </label>
+                            <input id="materia" name="materia" class="form-control" aria-describedby="materiaHelp" placeholder="Ingresa materia"/> <br>
+                            <small id="materiaHelp" class="form-text text-muted"></small>
+                          </div>
+                          <div class="form-group">
+                            <label for="calificacion"> Calificación </label>
+                            <input id="calificacion" name="calificacion" class="form-control" aria-describedby="calificacionHelp" placeholder="Ingresa calificación"/><br>
+                            <small id="calificacionHelp" class="form-text text-muted"></small>
+                          </div>
+                          <div>
+                            <label for="semestre"> Semestre </label>
+                            <input id="semestre" name="semestre" class="form-control" aria-describedby="semestreHelp" placeholder="Ingresa semestre"/>
+                            <small id="semestreHelp" class="form-text text-muted"></small>
+                          </div>
                         </form> 
                   </div>
                 <div class="modal-footer">
@@ -36,19 +45,22 @@ $accion = $_GET['accion'];
           $(document).ready(function(){
           $(".alta_historial").on("click", function(){
           $.ajax({
+              dataType: "json",
               method: "POST",
               url: "historial_acciones.php",
               data: $("#frm_alta_historial").serialize()+"&accion=alta",
               cache:false
             })
             .done(function( msg ) {
+              console.log(msg.mensaje);
+              alert(msg.mensaje);
               window.location.href = "perfil.php";
               $("#respuesta").html(msg);
               });
             });
           });
           </script>
-          ';
+          <?php
             break;
 
             
@@ -60,8 +72,8 @@ $accion = $_GET['accion'];
              // print_r($row);
              // exit();
             ?>
-            <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
                     <h5 class="modal-title">Actualización datos</h5>
@@ -74,33 +86,36 @@ $accion = $_GET['accion'];
 
                      <!--<div class="container-md">-->
                       <form id="frm_update">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">Materia</th>
-                              <th scope="col">Calificación</th>
-                              <th scope="col">Semestre</th>
-                            </tr>
-                          </thead>
-                            <tbody>
-                            <!--<tr>
-                            <th> <?php echo $_GET['id_historial'];?></th>
-                            <td> 1</td>
-                            <td> <input name="materia" id="materia" value="<?= $row['materia'];?>"/> </td>
-                            <td> <input name="calificacion" id="calificacion" value="<?= $row['calificacion'];?>"/> </td>
-                            <td> <input name="semestre" id="semestre" value="<?= $row['semestre']; ?>"/> </td>
-                            </tr>-->
-                            <?php
-                            while($row=mysqli_fetch_array($res)){ 
-                                  
-                              echo '<tr> <input type="hidden" name="id_historial" value="'.$row['idHistorial'].'"/>
-                                  <td> <input type="text" name="materia" id="materia" value="'.$row['materia'].'" /> </td>      
-                                  <td> <input type="text" name="calificacion" id="calificacion" value="'.$row['calificacion'].'"/> </td>      
-                                  <td> <input type="text" name="semestre" id="semestre" value="'.$row['semestre'].'"/> </td>
-                                  </tr>';
-                                } ?>
-                            </tbody>
-                        </table>
+                      <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Materia</th>
+                                <th scope="col">Calificación</th>
+                                <th scope="col">Semestre</th>
+                              </tr>
+                            </thead>
+                              <tbody>
+                              <!--<tr>
+                              <th> <?php echo $_GET['id_historial'];?></th>
+                              <td> 1</td>
+                              <td> <input name="materia" id="materia" value="<?= $row['materia'];?>"/> </td>
+                              <td> <input name="calificacion" id="calificacion" value="<?= $row['calificacion'];?>"/> </td>
+                              <td> <input name="semestre" id="semestre" value="<?= $row['semestre']; ?>"/> </td>
+                              </tr>-->
+                              <?php
+                              while($row=mysqli_fetch_array($res)){ 
+                                    
+                                echo '<tr> 
+                                         <input type="hidden" name="id_historial" value="'.$row['idHistorial'].'"/> 
+                                    <td> <input type="text" name="materia" id="materia" value="'.$row['materia'].'" /> </td>      
+                                    <td> <input type="text" name="calificacion" id="calificacion" value="'.$row['calificacion'].'"/> </td>      
+                                    <td> <input type="text" name="semestre" id="semestre" value="'.$row['semestre'].'"/> </td>
+                                    </tr>';
+                                  } ?>
+                              </tbody>
+                          </table>
+                        </div>
                       </form>   
                    <!-- </div> -->
                   </div>
@@ -116,6 +131,7 @@ $accion = $_GET['accion'];
           $(document).ready(function(){
             $(".update_historial").on("click", function(){
             $.ajax({
+                dataType: "json",
                 method: "POST",
                 url: "historial_acciones.php",
                 data: $("#frm_update").serialize()+"&accion=actualizacion",
@@ -124,6 +140,7 @@ $accion = $_GET['accion'];
                 cache:false
               })
               .done(function( msg ) {
+                alert(msg.mensaje);
                 window.location.href = "perfil.php";
                 $("#respuesta").html(msg);
                 });
@@ -142,8 +159,8 @@ $accion = $_GET['accion'];
           $res = mysqli_query($mysqli, $sql);
           $row=mysqli_fetch_array($res);
           ?>
-             <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+             <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title">Baja datos</h5>

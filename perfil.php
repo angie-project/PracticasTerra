@@ -6,13 +6,16 @@ include_once "header.php";
 .container{
     margin-top: 50px;  
 }
+body{
+  background-image: url("img/fblanco.jpg");
+}
 </style>
 
 <div class="container">
-<div class="jumbotron" >
-  <h1 class="display-4">Bienvenido ! <?= $_SESSION['nombre'];?></h1>
-</div>
-
+  <div class="jumbotron">
+    <h1 class="display-4">Bienvenido! <?= $_SESSION['nombre'];?></h1>
+  </div>
+  
 <?php
 include_once "conexion.php";
 $sql = "select * from historial where idUsuario= '". $_SESSION['idUsuario'] . "'";
@@ -20,8 +23,7 @@ echo $sql;
 $res = mysqli_query($mysqli, $sql);
 ?>
 
-<div class="container">
-
+<div class="container2">
   <button type="button" class="btn btn-primary btn_alta_historial mod_alta" accion="alta">
     Alta historial 
   </button>
@@ -55,7 +57,7 @@ $res = mysqli_query($mysqli, $sql);
 </div> -->
 
  
-    <table class="table">
+    <table class="table table-hover table-bordered" id="table_datos">
       <thead>
         <tr>
           <th scope="col">Materia</th>
@@ -92,6 +94,43 @@ function mostrar_detalles(idHistorial){
 }
 
 $(document).ready(function(){
+  $('#table_datos').DataTable({
+"responsive": true,
+                    "autoWidth": true,
+                    "lengthMenu": [10, 25, 50],
+                    "pageLength": 4,
+    "language": {
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+                    "dom": 'lBfrtip',
+                    "buttons": [
+                        'copyHtml5',
+                        'csvHtml5'
+                    ]
+
+  });
+
   // $(".detalles").on("click", function(){
   //   let idHistorial = $(this).attr('id_historial');
   //   $('#exampleModal').modal('show'); 
