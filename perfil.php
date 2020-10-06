@@ -92,7 +92,7 @@ $res = mysqli_query($mysqli, $sql);
 function mostrar_detalles(idHistorial){
     alert("Mostrando detalles"+idHistorial);
 }
-
+//El data table con paginacion presentaba problemas 
 $(document).ready(function(){
   $('#table_datos').DataTable({
 "responsive": true,
