@@ -177,10 +177,10 @@ $(document).ready(function(){
             });
     });
 
-    $(".mod_update").on("click", function(){
+    $("#table_datos").on("click",'.mod_update', function(){
         let modal = $(this).attr('accion');
         let id_historial= $(this).attr('id_historial');
-        //alert(modal+" "+id_historial);
+        alert(modal+" "+id_historial);
         //return;
         $.ajax({
             method: "GET",
@@ -194,7 +194,7 @@ $(document).ready(function(){
             });
     });
 
-    $(".mod_baja").on("click", function(){
+    $("#table_datos").on("click",".mod_baja", function(){
         let modal = $(this).attr('accion');
         let id_historial= $(this).attr('id_historial');
         $.ajax({
