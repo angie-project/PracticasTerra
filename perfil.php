@@ -93,6 +93,7 @@ function mostrar_detalles(idHistorial){
     alert("Mostrando detalles"+idHistorial);
 }
 //El data table con paginacion presentaba problemas 
+// Esto se debe porque los elementos ya no estan activos
 $(document).ready(function(){
   $('#table_datos').DataTable({
 "responsive": true,
